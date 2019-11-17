@@ -61,21 +61,40 @@ def all_supplies_in_holidays(holiday_hash)
   #   Fourth Of July: Fireworks, BBQ
   # etc.
   
-
   tempWords = ""
   holiday_hash.each do |season, index|
     puts "#{season.capitalize}:"
     index.each do |event, data|
-      puts "  #{event.capitalize}: "
-      data.each do |supply, value|
-        tempWords << "#{supply}, "
+      if event == "new_years"
+        tempWords << event.split("_").capitalize
+      else
+        tempWords << "  #{event.capitalize}:"
       end
-      
-      puts tempWords.chomp(", ")
+      data.each do |supply, value|
+        tempWords << " #{supply},"
+      end
+
+      puts tempWords.chomp(",")
       tempWords = ""
     end
-  
+
   end
+  
+
+  # tempWords = ""
+  # holiday_hash.each do |season, index|
+  #   puts "#{season.capitalize}:"
+  #   index.each do |event, data|
+
+  #     data.each do |supply, value|
+  #       tempWords << "#{supply}, "
+  #     end
+  #     event.to_s.split("_").capitalize
+  #     puts "  #{event.capitalize}: #{tempWords.chomp(", ")}"
+  #     tempWords = ""
+  #   end
+  
+  # end
 end
 
 def all_holidays_with_bbq(holiday_hash)
