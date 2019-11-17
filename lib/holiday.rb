@@ -60,18 +60,19 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
+  
+
   tempWords = ""
   holiday_hash.each do |season, index|
-    print "#{season.capitalize}:\n"
+    puts "#{season.capitalize}:"
     index.each do |event, data|
-      print "  #{event.capitalize}: "
+      puts "  #{event.capitalize}: "
       
       data.each do |supply, value|
         tempWords << "#{supply}, "
       end
-      tempWords.chomp(',')
-      print tempWords
-      print "\n"
+      
+      puts tempWords.chomp(", ")
       tempWords = ""
     end
   
