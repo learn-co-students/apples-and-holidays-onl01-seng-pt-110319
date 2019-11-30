@@ -38,20 +38,23 @@ end
 
 def add_new_holiday_with_supplies(holiday_hash, season, holiday_name, supply_array)
   # def remove_strawberry(contacts)
-  holiday_hash.each do |season|
-    if season == :winter, :summer, :fall, :spring
-      season.each do |holiday_name, supply_array|
-      end
-    end
-  holiday_hash
+  holiday_hash[season][holiday_name] = supply_array
 end
 
 def all_winter_holiday_supplies(holiday_hash)
   # return an array of all of the supplies that are used in the winter season
-
+  holiday_hash[:winter].map do |key, value|
+    value
+  end.flatten
 end
 
 def all_supplies_in_holidays(holiday_hash)
+  holiday_hash.each do |season, holiday|
+    puts "#{season.to_s.capitalize}:"
+      holiday.each do |event, supplies|
+        puts "  #{event.to_s.split("_").map { |x| x.capitalize }.join(" ") }: #{supplies.join(", ")}"
+        end
+      end
   # iterate through holiday_hash and print items such that your readout resembles:
   # Winter:
   #   Christmas: Lights, Wreath
@@ -59,11 +62,14 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
-
 end
 
 def all_holidays_with_bbq(holiday_hash)
-  # return an array of holiday names (as symbols) where supply lists
-  # include the string "BBQ"
-
+  holiday_hash.map do |season, holidays| # return an array of holiday names (as symbols) where supply lists
+    holidays.map do |event, supplies| # include the string "BBQ"
+      if supplies.include?("BBQ")
+        event
+      end
+    end
+  end.flatten.compact
 end
